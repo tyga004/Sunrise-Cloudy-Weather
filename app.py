@@ -10,7 +10,7 @@ def main():
     st.write("Section: CPE32S4")
     st.write("Instructor: Dr. Jonathan Taylar")
     st.title("Class Weather ( Sunrise/Cloudy)")
-    st.write("This app classifies whether an uploaded image contains a Sunrise or Cloudy images using a pre-trained convolutional neural network model.")
+    st.write("This program identifies the submitted images/photos according to their weather classification if they are Cloudy or Sunrise photos using a pre-trained convolutional neural network model.")
    
     @st.cache_resource
     def load_model():
