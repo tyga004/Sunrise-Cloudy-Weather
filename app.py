@@ -7,9 +7,9 @@ import cv2
 def main():
     # set up the Streamlit app
     st.write("Name: Joemart Gridson T. Turaray")
-    st.write("Section: CPE32S4")
+    st.write("Section: CPE 019 - CPE32S4")
     st.write("Instructor: Dr. Jonathan Taylar")
-    st.title("Class Weather ( Sunrise/Cloudy)")
+    st.title("Predicting Class Weather (Sunrise or Cloudy)")
     st.write("This program identifies the submitted images/photos according to their weather classification if they are Cloudy or Sunrise photos using a pre-trained convolutional neural network model.")
    
     @st.cache_resource
