@@ -25,9 +25,10 @@ jobs:
       - name: Check if PR is Mergable
         uses: octokit/request-action@v2.x
         id: pr
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          route: GET /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge
+         with:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           route: GET /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge
+
 
       - name: Merge PR
         if: steps.pr.outputs.data.mergeable == 'true'
