@@ -1,18 +1,15 @@
-import cv2
-import numpy as np
 import streamlit as st
 import tensorflow as tf
 from PIL import Image, ImageOps
-
+import numpy as np
 
 def main():
-    # set up the Streamlit app
     st.write("Name: Joemart Gridson T. Turaray")
     st.write("Section: CPE 019 - CPE32S4")
     st.write("Instructor: Dr. Jonathan Taylar")
     st.title("Predicting Class Weather (Sunrise or Cloudy)")
     st.write(
-        "This program identifies the submitted images/photos according to their weather classification if they are Cloudy or Sunrise photos using a pre-trained convolutional neural network model."
+        "This program identifies submitted images according to their weather classification, whether they are Cloudy or Sunrise photos, using a pre-trained convolutional neural network model."
     )
 
     @st.cache_resource
@@ -20,8 +17,8 @@ def main():
         model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
         return model
 
-    def import_and_predict(image_data, model):  # Pass 'image_data' as an argument
-        image = np.asarray(image_data)  # Use 'image_data' instead of 'image'
+    def import_and_predict(image_data, model):
+        image = np.asarray(image_data)
         image = image / 255.0
         img_reshape = np.reshape(image, (1, 128, 128, 3))
         prediction = model.predict(img_reshape)
@@ -45,7 +42,6 @@ def main():
         class_name = class_names[class_index]
         string = "Prediction: " + class_name
         st.success(string)
-
 
 if __name__ == "__main__":
     main()
