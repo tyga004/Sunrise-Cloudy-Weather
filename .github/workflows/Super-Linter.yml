@@ -16,13 +16,11 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge if Super-Linter Passed (for Python)
+      - name: Merge if Super-Linter Passed 
         if: success() && github.event.repository.language == 'Python'  # Replace with the appropriate language condition
         env:
           GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         run: |
-          git config user.name "Your Name"
-          git config user.email "youremail@example.com"
           git checkout main  # Replace 'main' with your target branch
           git merge --ff-only $GITHUB_SHA
           git push
