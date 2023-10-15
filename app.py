@@ -5,8 +5,8 @@ from PIL import Image
 
 
 def main():
-    st.write("Name: Joemart Gridson T. Turaray")
-    st.write("Section: CPE 019 - CPE32S4")
+    st.write("Group 4")
+    st.write("Section: CPE 028 - CPE41S5")
     st.write("Instructor: Dr. Jonathan Taylar")
     st.title("Predicting Class Weather (Sunrise or Cloudy")
     st.write(
