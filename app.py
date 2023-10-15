@@ -21,9 +21,10 @@ def main():
 
     def import_and_predict(image_data, model):
         image = np.asarray(image_data)
+        image = cv2.resize(image, (128, 128))
         image = image / 255.0
-        img_reshape = np.reshape(image, (1, 128, 128, 3))
-        prediction = model.predict(img_reshape)
+        image = np.expand_dims(image, axis=0)
+        prediction = model.predict(image)
         return prediction
 
     model = load_model()
