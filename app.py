@@ -20,8 +20,8 @@ def main():
         model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
         return model
 
-    def import_and_predict(image_data, model):
-        image = np.asarray(image)
+    def import_and_predict(image_data, model):  # Pass 'image_data' as an argument
+        image = np.asarray(image_data)  # Use 'image_data' instead of 'image'
         image = image / 255.0
         img_reshape = np.reshape(image, (1, 128, 128, 3))
         prediction = model.predict(img_reshape)
