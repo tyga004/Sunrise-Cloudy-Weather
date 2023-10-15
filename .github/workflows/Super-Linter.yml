@@ -1,12 +1,6 @@
-name: CI/CD with Auto-Merge
+name: Super-Linter
 
-on:
-  push:
-    # Define your push event configuration here
-
-  pull_request:
-    types:
-      - closed
+on: push
 
 jobs:
   super-lint:
@@ -22,26 +16,13 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  merge:
-    name: Merge Pull Request
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check PR event
-        id: pr
-        uses: actions/github-script@v4
-        with:
-          script: |
-            if (github.event.pull_request.merged) {
-              core.setOutput('shouldMerge', 'true');
-            } else {
-              core.setOutput('shouldMerge', 'false');
-            }
-
-      - name: Merge Pull Request
-        if: steps.pr.outputs.shouldMerge == 'true'
+      - name: Merge if Super-Linter Passed (for Python)
+        if: success() && github.event.repository.language == 'Python'  # Replace with the appropriate language condition
+        env:
+          GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "github-actions@github.com"
-          git checkout ${{ github.event.pull_request.base.ref }}
-          git merge --ff-only ${{ github.event.pull_request.head.sha }}
+          git config user.name "Your Name"
+          git config user.email "youremail@example.com"
+          git checkout main  # Replace 'main' with your target branch
+          git merge --ff-only $GITHUB_SHA
           git push
