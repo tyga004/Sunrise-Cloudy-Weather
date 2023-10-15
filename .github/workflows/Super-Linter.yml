@@ -19,7 +19,7 @@ jobs:
       - name: Merge if Super-Linter Passed 
         if: success() && github.event.repository.language == 'Python'  # Replace with the appropriate language condition
         env:
-          GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git checkout main  # Replace 'main' with your target branch
           git merge --ff-only $GITHUB_SHA
