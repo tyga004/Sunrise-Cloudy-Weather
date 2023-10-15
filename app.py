@@ -39,6 +39,11 @@ def main():
         st.text("Please upload an image file")
     else:
         image = Image.open(file)
+        image = Image.open(file)
+        image = image.resize((128, 128))
+        image = np.asarray(image)
+        image = image / 255.0
+        image = np.expand_dims(image, axis=0)
         st.image(image, use_column_width=True)
         prediction = import_and_predict(image, model)
         class_index = np.argmax(prediction)
