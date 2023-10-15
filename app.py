@@ -12,7 +12,8 @@ def main():
     st.title("Predicting Class Weather (Sunrise or Cloudy)")
     st.write(
         "This program identifies submitted images according to their weather classification,"
-        " whether they are Cloudy or Sunrise photos, using a pre-trained convolutional neural network model."
+        " whether they are Cloudy or Sunrise photos, "
+        "using a pre-trained convolutional neural network model."
     )
 
     @st.cache_resource
