@@ -4,7 +4,6 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
-
 def main():
     st.write("Group 4")
     st.write("Section: CPE 028 - CPE41S5")
@@ -46,6 +45,5 @@ def main():
         string = "Prediction: " + class_name
         st.success(string)
 
-
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
