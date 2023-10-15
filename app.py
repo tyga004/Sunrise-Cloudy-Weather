@@ -45,6 +45,8 @@ def main():
         class_name = class_names[class_index]
         string = "Prediction: " + class_name
         st.success(string)
- 
+
+
+
 if __name__ == "__main__":
     main()
