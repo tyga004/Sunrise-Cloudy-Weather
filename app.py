@@ -8,9 +8,10 @@ def main():
     st.write("Name: Joemart Gridson T. Turaray")
     st.write("Section: CPE 019 - CPE32S4")
     st.write("Instructor: Dr. Jonathan Taylar")
-    st.title("Predicting Class Weather (Sunrise or Cloudy)")
+    st.title("Predicting Class Weather (Sunrise or Cloudy")
     st.write(
-        "This program identifies submitted images according to their weather classification, whether they are Cloudy or Sunrise photos, using a pre-trained convolutional neural network model."
+        "This program identifies submitted images according to their weather classification,"
+        " whether they are Cloudy or Sunrise photos, using a pre-trained convolutional neural network model."
     )
 
     @st.cache_resource
