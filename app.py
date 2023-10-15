@@ -9,7 +9,7 @@ def main():
     st.write("Group 4")
     st.write("Section: CPE 028 - CPE41S5")
     st.write("Instructor: Dr. Jonathan Taylar")
-    st.title("Predicting Class Weather (Sunrise or Cloudy")
+    st.title("Predicting Class Weather (Sunrise or Cloudy)")
     st.write(
         "This program identifies submitted images according to their weather classification,"
         " whether they are Cloudy or Sunrise photos, using a pre-trained convolutional neural network model."
@@ -39,7 +39,6 @@ def main():
     if file is None:
         st.text("Please upload an image file")
     else:
-        image = Image.open(file)
         image = Image.open(file)
         image = image.resize((128, 128))
         image = np.asarray(image)
