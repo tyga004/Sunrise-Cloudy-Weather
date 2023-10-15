@@ -10,7 +10,7 @@ def main():
     st.write("Instructor: Dr. Jonathan Taylar")
     st.title("Predicting Class Weather (Sunrise or Cloudy)")
     st.write(
-        "This program identifies submitted images according to their weather classification, whether they are Cloudy or Sunrise photos, using a pre-trained convolutional neural network model."
+        "This program identifies submitted images whether they are Cloudy or Sunrise photos."
     )
 
     @st.cache(allow_output_mutation=True)
