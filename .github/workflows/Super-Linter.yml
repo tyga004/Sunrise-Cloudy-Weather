@@ -23,7 +23,7 @@ jobs:
     if: success()
     steps:
       - name: Check if PR is Mergable
-        uses: octokit/request-action@2.x
+        uses: octokit/request-action@v2.x
         id: pr
         with:
           route: GET /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge
