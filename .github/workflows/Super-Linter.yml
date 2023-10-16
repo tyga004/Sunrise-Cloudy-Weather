@@ -24,8 +24,8 @@ jobs:
     - name: Merge Pull Request
       if: steps.pr.outputs.shouldMerge == 'true'
       run: |
-        git config user.name "GitHub Actions"
-        git config user.email "github-actions@github.com"
+        git config user.name "Momart25"
+        git config user.email "qjgtturaray@tip.edu.ph"
         git checkout ${{ github.event.pull_request.base.ref }}
         git merge --ff-only ${{ github.event.pull_request.head.sha }}
         git push
