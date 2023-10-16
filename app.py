@@ -9,7 +9,7 @@ def login():
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
-        if username == "your_username" and password == "your_password":
+        if username == "user" and password == "123":
             return True
         else:
             st.warning("Incorrect username or password")
