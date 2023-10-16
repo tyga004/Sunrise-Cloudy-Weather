@@ -47,8 +47,7 @@ def main():
 
         # Add a button to upload another image
         if st.button("Upload Another Image"):
-            st.text("")  # Clear previous text, if any
-            main()  # Restart the main function
+            main()
 
 if __name__ == "__main__":
     main()
