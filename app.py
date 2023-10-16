@@ -30,7 +30,7 @@ def main():
         run_prediction()
 
 def run_prediction():
-    @st.cache(allow_output_mutation=True)
+    # @st.cache(allow_output_mutation=True)
     def load_model():
         model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
         return model
