@@ -4,33 +4,35 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
+# Define your Streamlit pages
+PAGES = {
+    "Login": "login",
+    "Prediction": "prediction",
+}
+
 def main():
-    st.write("Group 4")
-    st.write("Section: CPE 028 - CPE41S5")
-    st.write("Instructor: Dr. Jonathan Taylar")
-    st.title("Predicting Class Weather (Sunrise or Cloudy)")
-    st.write(
-        "This program identifies submitted images whether they are Cloudy or Sunrise photos."
-    )
+    st.sidebar.title("Navigation")
+    page = st.sidebar.radio("Go to", list(PAGES.keys()))
+    
+    if page == PAGES["Login"]:
+        login()
+    elif page == PAGES["Prediction"]:
+        run_prediction()
 
-    login_success = False
-
-    # Create input fields for username and password
+def login():
+    st.title("Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-
-    # Create a login button
     if st.button("Login"):
         if check_login(username, password):
-            login_success = True
+            st.success("Login successful!")
+            st.experimental_rerun()  # Reload the app to switch to the Prediction page
         else:
             st.error("Incorrect username or password")
 
-    if login_success:
-        run_prediction()
-
 def run_prediction():
-    # @st.cache(allow_output_mutation=True)
+    st.title("Prediction")
+    @st.cache(allow_output_mutation=True)
     def load_model():
         model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
         return model
@@ -64,7 +66,7 @@ def run_prediction():
 
 def check_login(username, password):
     # Replace with your authentication logic
-    if username == "your_username" and password == "your_password":
+    if username == "user" and password == "user":
         return True
     return False
 
