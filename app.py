@@ -57,6 +57,10 @@ def main():
             class_index = np.argmax(prediction)
             class_name = class_names[class_index]
             string = "Prediction: " + class_name
+            st.write("Prediction:", prediction)
+            st.write("Class Index:", class_index)
+            st.write("Class Name:", class_name)
+            st.success("Prediction: " + class_name)
             st.success(string)
 
 
