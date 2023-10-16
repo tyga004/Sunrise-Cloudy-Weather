@@ -22,12 +22,6 @@ def main():
         "This program identifies submitted images whether they are Cloudy or Sunrise photos."
     )
 
-    if not login():
-        return  # Stop execution if login fails
-
-    st.text_input("Username", value="user", key="username_input")  # Hide username input
-    st.text_input("Password", type="password", value="user", key="password_input")  # Hide password input
-
     @st.cache(allow_output_mutation=True)
     def load_model():
         model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
