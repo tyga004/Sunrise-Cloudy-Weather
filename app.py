@@ -4,7 +4,6 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
-
 def main():
     st.write("Group 4")
     st.write("Section: CPE 028 - CPE41S5")
@@ -14,6 +13,17 @@ def main():
         "This program identifies submitted images whether they are Cloudy or Sunrise photos."
     )
 
+    # Add a login feature
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if username == "your_username" and password == "your_password":
+            st.success("Login successful!")
+            run_prediction()
+        else:
+            st.warning("Incorrect username or password")
+
+def run_prediction():
     @st.cache(allow_output_mutation=True)
     def load_model():
         model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
@@ -45,7 +55,6 @@ def main():
         class_name = class_names[class_index]
         string = "Prediction: " + class_name
         st.success(string)
-
 
 if __name__ == "__main__":
     main()
