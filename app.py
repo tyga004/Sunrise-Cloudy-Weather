@@ -23,7 +23,7 @@ def main():
         "This program identifies submitted images whether they are Cloudy or Sunrise photos."
     )
 
-    if login(True):
+    if login():
         @st.cache(allow_output_mutation=True)
         def load_model():
             model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
