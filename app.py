@@ -48,7 +48,7 @@ def main():
         )
 
         if file is None:
-            st.text("Please upload an image file")
+            st.text("Test")
         else:
             image = Image.open(file)
             image = np.asarray(image)
