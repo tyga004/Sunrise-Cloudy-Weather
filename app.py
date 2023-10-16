@@ -61,7 +61,6 @@ def main():
             st.write("Class Index:", class_index)
             st.write("Class Name:", class_name)
             st.success("Prediction: " + class_name)
-            st.success(string)
 
 
 if __name__ == "__main__":
