@@ -48,7 +48,7 @@ def main():
         )
 
         if file is None:
-            st.text("Test")
+            st.text("Please upload an image file")
         else:
             image = Image.open(file)
             image = np.asarray(image)
@@ -56,7 +56,7 @@ def main():
             prediction = import_and_predict(image, model)
             class_index = np.argmax(prediction)
             class_name = class_names[class_index]
-            string = "Prediction: " + class_name
+            # string = "Prediction: " + class_name
             st.write("Prediction:", prediction)
             st.write("Class Index:", class_index)
             st.write("Class Name:", class_name)
