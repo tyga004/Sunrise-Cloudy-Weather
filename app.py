@@ -26,7 +26,7 @@ def run_prediction():
     def import_and_predict(image_data, model):
         image = cv2.resize(image_data, (128, 128))
         image = image / 255.0
-        image = np.expand_dims image, axis=0)
+        image = np.expand_dims, image, axis=0
         prediction = model.predict(image)
         return prediction
 
