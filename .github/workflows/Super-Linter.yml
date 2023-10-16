@@ -1,31 +1,17 @@
-name: Auto-Merge Pull Request
+name: Super-Linter
 
-on:
-  pull_request:
-    types:
-      - closed
+on: push
 
 jobs:
-  merge:
+  super-lint:
+    name: Lint code base
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check PR event
-      id: pr
-      uses: actions/github-script@v4
-      with:
-        script: |
-          if (github.event.pull_request.merged) {
-            core.setOutput('shouldMerge', 'true');
-          } else {
-            core.setOutput('shouldMerge', 'false');
-          }
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Merge Pull Request
-      if: steps.pr.outputs.shouldMerge == 'true'
-      run: |
-        git config user.name "Momart25"
-        git config user.email "qjgtturaray@tip.edu.ph"
-        git checkout ${{ github.event.pull_request.base.ref }}
-        git merge --ff-only ${{ github.event.pull_request.head.sha }}
-        git push
+      - name: Run Super-Linter
+        uses: github/super-linter@v3.17.0
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
