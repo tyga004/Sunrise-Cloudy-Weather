@@ -4,7 +4,6 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
-
 def main():
     st.write("Group 4")
     st.write("Section: CPE 028 - CPE41S5")
@@ -46,6 +45,10 @@ def main():
         string = "Prediction: " + class_name
         st.success(string)
 
+        # Add a button to upload another image
+        if st.button("Upload Another Image"):
+            st.text("")  # Clear previous text, if any
+            main()  # Restart the main function
 
 if __name__ == "__main__":
     main()
