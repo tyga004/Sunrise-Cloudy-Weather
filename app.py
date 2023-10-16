@@ -13,15 +13,19 @@ def main():
         "This program identifies submitted images whether they are Cloudy or Sunrise photos."
     )
 
-    # Add a login feature
+    # Create input fields for username and password
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
+
+    # Create a login button
     if st.button("Login"):
-        if username == "your_username" and password == "your_password":
+        if check_login(username, password):
             st.success("Login successful!")
+            # Clear the login screen and run the prediction function
+            st.empty()
             run_prediction()
         else:
-            st.warning("Incorrect username or password")
+            st.error("Incorrect username or password")
 
 def run_prediction():
     @st.cache(allow_output_mutation=True)
@@ -55,6 +59,12 @@ def run_prediction():
         class_name = class_names[class_index]
         string = "Prediction: " + class_name
         st.success(string)
+
+def check_login(username, password):
+    # Replace with your authentication logic
+    if username == "user" and password == "password":
+        return True
+    return False
 
 if __name__ == "__main__":
     main()
