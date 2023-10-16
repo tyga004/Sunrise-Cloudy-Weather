@@ -4,21 +4,6 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
-# Define your Streamlit pages
-PAGES = {
-    "Login": "login",
-    "Prediction": "prediction",
-}
-
-def main():
-    st.sidebar.title("Navigation")
-    page = st.sidebar.radio("Go to", list(PAGES.keys()))
-    
-    if page == PAGES["Login"]:
-        login()
-    elif page == PAGES["Prediction"]:
-        run_prediction()
-
 def login():
     st.title("Login")
     username = st.text_input("Username")
@@ -26,9 +11,10 @@ def login():
     if st.button("Login"):
         if check_login(username, password):
             st.success("Login successful!")
-            st.experimental_rerun()  # Reload the app to switch to the Prediction page
+            return True
         else:
             st.error("Incorrect username or password")
+    return False
 
 def run_prediction():
     st.title("Prediction")
@@ -40,7 +26,7 @@ def run_prediction():
     def import_and_predict(image_data, model):
         image = cv2.resize(image_data, (128, 128))
         image = image / 255.0
-        image = np.expand_dims(image, axis=0)
+        image = np.expand_dims image, axis=0)
         prediction = model.predict(image)
         return prediction
 
@@ -69,6 +55,19 @@ def check_login(username, password):
     if username == "user" and password == "user":
         return True
     return False
+
+def main():
+    st.title("Group 4")
+    st.title("Section: CPE 028 - CPE41S5")
+    st.title("Instructor: Dr. Jonathan Taylar")
+    
+    page = st.selectbox("Select Page", ["Login", "Prediction"])
+    
+    if page == "Login":
+        if login():
+            st.subheader("Welcome to the Prediction Page")
+    elif page == "Prediction":
+        run_prediction()
 
 if __name__ == "__main__":
     main()
