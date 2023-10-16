@@ -15,6 +15,7 @@ def login():
             st.warning("Incorrect username or password")
     return False
 
+
 def main():
     st.write("Group 4")
     st.write("Section: CPE 028 - CPE41S5")
@@ -25,6 +26,7 @@ def main():
     )
 
     if login():
+
         @st.cache(allow_output_mutation=True)
         def load_model():
             model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
