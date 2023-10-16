@@ -34,6 +34,7 @@ def main():
             image = image / 255.0
             image = np.expand_dims(image, axis=0)
             prediction = model.predict(image)
+            print("Prediction:", prediction)
             return prediction
 
         model = load_model()
