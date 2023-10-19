@@ -18,27 +18,25 @@ def login():
 
 def run_prediction(model):
     st.title("Prediction")
-
     class_names = ["CLOUDY", "SUNRISE"]
 
-    file = st.file_uploader(
+    uploaded_image = st.file_uploader(
         "Choose a Cloudy or Sunrise picture from your computer",
         type=["jpg", "png", "jpeg"],
     )
 
-    if file is None:
-        st.text("Please upload an image file")
-    else:
-        image = Image.open(file)
-        image = np.asarray(image)
+    if uploaded_image is not None:
+        image = Image.open(uploaded_image)
         st.image(image, use_column_width=True)
-        st.write(f"Image shape: {image.shape}")
-        prediction = import_and_predict(image, model)
+        image_data = np.asarray(image)
+        st.write(f"Image shape: {image_data.shape}")
+        
+        prediction = import_and_predict(image_data, model)
         st.write(f"Prediction shape: {prediction.shape}")
+
         class_index = np.argmax(prediction)
         class_name = class_names[class_index]
-        string = "Prediction: " + class_name
-        st.success(string)
+        st.success("Prediction: " + class_name)
 
 def import_and_predict(image_data, model):
     image = cv2.resize(image_data, (128, 128))
