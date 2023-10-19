@@ -4,6 +4,10 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 
+# Create a session state to store login status
+if 'login_status' not in st.session_state:
+    st.session_state.login_status = False
+
 def login():
     st.title("Login")
     username = st.text_input("Username")
@@ -11,6 +15,7 @@ def login():
     if st.button("Login"):
         if check_login(username, password):
             st.success("Login successful!")
+            st.session_state.login_status = True  # Update login status
             return True
         else:
             st.error("Incorrect username or password")
@@ -61,12 +66,11 @@ def main():
     st.title("Section: CPE 028 - CPE41S5")
     st.title("Instructor: Dr. Jonathan Taylar")
     
-    page = st.selectbox("Select Page", ["Login", "Prediction"])
-    
-    if page == "Login":
-        if login():
-            st.subheader("Welcome to the Prediction Page")
-            run_prediction()
+    if not st.session_state.login_status:
+        login()
+    else:
+        st.subheader("Welcome to the Prediction Page")
+        run_prediction()
 
 if __name__ == "__main__":
     main()
