@@ -48,7 +48,9 @@ def run_prediction(logged_in):
         image = Image.open(file)
         image = np.asarray(image)
         st.image(image, use_column_width=True)
+        st.write(f"Image shape: {image.shape}")
         prediction = import_and_predict(image, model)
+        st.write(f"Prediction shape: {prediction.shape}")
         class_index = np.argmax(prediction)
         class_name = class_names[class_index]
         string = "Prediction: " + class_name
