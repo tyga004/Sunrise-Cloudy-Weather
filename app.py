@@ -72,6 +72,7 @@ def main():
         logged_in = login()
         if logged_in:
             st.subheader("Welcome to the Prediction Page")
+            run_prediction()
     elif page == "Prediction":
         run_prediction(logged_in)
 
