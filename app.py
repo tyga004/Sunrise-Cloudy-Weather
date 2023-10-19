@@ -61,8 +61,14 @@ def main():
     st.title("Section: CPE 028 - CPE41S5")
     st.title("Instructor: Dr. Jonathan Taylor")
     
-    if login():  # Require login to access the Prediction page
-        run_prediction()
+    page = st.selectbox("Select Page", ["Login", "Prediction"])
+    
+    if page == "Login":
+        if login():
+            st.subheader("Welcome to the Prediction Page")
+    elif page == "Prediction":
+        if login():  # Check if the user is logged in before allowing access to the Prediction page
+            run_prediction()
 
 if __name__ == "__main__":
     main()
