@@ -8,12 +8,12 @@ def login():
     st.title("Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    login_button = st.button("Login")
-
-    if login_button and check_login(username, password):
-        st.success("Login successful!")
-        return True
-
+    if st.button("Login"):
+        if check_login(username, password):
+            st.success("Login successful!")
+            return True
+        else:
+            st.error("Incorrect username or password")
     return False
 
 def run_prediction():
@@ -59,7 +59,7 @@ def check_login(username, password):
 def main():
     st.title("Group 4")
     st.title("Section: CPE 028 - CPE41S5")
-    st.title("Instructor: Dr. Jonathan Taylor")
+    st.title("Instructor: Dr. Jonathan Taylar")
     
     page = st.selectbox("Select Page", ["Login", "Prediction"])
     
@@ -67,8 +67,7 @@ def main():
         if login():
             st.subheader("Welcome to the Prediction Page")
     elif page == "Prediction":
-        if login():  # Check if the user is logged in before allowing access to the Prediction page
-            run_prediction()
+        run_prediction()
 
 if __name__ == "__main__":
     main()
