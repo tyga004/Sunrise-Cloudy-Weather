@@ -66,17 +66,17 @@ def main():
     st.title("Group 4")
     st.title("Section: CPE 028 - CPE41S5")
     st.title("Instructor: Dr. Jonathan Taylar")
-    
+
     logged_in = False
     page = st.selectbox("Select Page", ["Login", "Prediction"])
-    
+
     if page == "Login":
         logged_in = login()
         if logged_in:
             st.subheader("Welcome to the Prediction Page")
-            run_prediction(logged_in)
-    elif page == "Prediction":
-        run_prediction(logged_in)
+
+    if page == "Prediction" and logged_in:
+        run_prediction()
 
 if __name__ == "__main__":
     main()
