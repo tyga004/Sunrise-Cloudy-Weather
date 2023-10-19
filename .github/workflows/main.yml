@@ -1,25 +1,26 @@
-name: main
+name: CI
 
 on:
   push:
     branches:
-      - main
+      - main 
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest 
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x  # Specify your Python version
 
-      - name: Install Dependencies
-        run: npm install
+    - name: Install dependencies
+      run: pip install -r requirements.txt 
 
-      - name: Run Tests
-        run: npm test
+    - name: Run tests
+      run: |
+        pytest  # Adjust this command based on your testing framework
