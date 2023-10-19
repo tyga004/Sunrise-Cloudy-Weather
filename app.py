@@ -72,5 +72,5 @@ def main():
         st.subheader("Welcome to the Prediction Page")
         run_prediction()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
