@@ -64,7 +64,6 @@ def check_login(username, password):
 def main():
     st.title("Group 4")
     st.title("Section: CPE 028 - CPE41S5")
-    st.title("Instructor: Dr. Jonathan Taylar")
     
     if not st.session_state.login_status:
         login()
