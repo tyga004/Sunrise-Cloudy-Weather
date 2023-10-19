@@ -16,7 +16,16 @@ def login():
             st.error("Incorrect username or password")
     return False
 
-def run_prediction(model):
+@st.cache(allow_output_mutation=True)
+def load_model():
+    model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
+    return model
+
+def run_prediction(model, logged_in):
+    if not logged_in:
+        st.warning("You need to log in to access the Prediction page.")
+        return
+
     st.title("Prediction")
     class_names = ["CLOUDY", "SUNRISE"]
 
@@ -57,7 +66,7 @@ def main():
     st.title("Instructor: Dr. Jonathan Taylar")
 
     logged_in = False
-    model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
+    model = load_model()  # Load the model outside of the run_prediction function
 
     page = st.selectbox("Select Page", ["Login", "Prediction"])
 
@@ -66,7 +75,7 @@ def main():
         if logged_in:
             st.subheader("Welcome to the Prediction Page")
     elif page == "Prediction" and logged_in:
-        run_prediction(model)
+        run_prediction(model, logged_in)
 
 if __name__ == "__main__":
     main()
