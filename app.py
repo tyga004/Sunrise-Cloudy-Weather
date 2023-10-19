@@ -8,12 +8,12 @@ def login():
     st.title("Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    if st.button("Login"):
-        if check_login(username, password):
-            st.success("Login successful!")
-            return True
-        else:
-            st.error("Incorrect username or password")
+    login_button = st.button("Login")
+
+    if login_button and check_login(username, password):
+        st.success("Login successful!")
+        return True
+
     return False
 
 def run_prediction():
@@ -44,7 +44,7 @@ def run_prediction():
         image = Image.open(file)
         image = np.asarray(image)
         st.image(image, use_column_width=True)
-        prediction = import_and_predict(image, model)
+        prediction = import_and predict(image, model)
         class_index = np.argmax(prediction)
         class_name = class_names[class_index]
         string = "Prediction: " + class_name
@@ -59,7 +59,7 @@ def check_login(username, password):
 def main():
     st.title("Group 4")
     st.title("Section: CPE 028 - CPE41S5")
-    st.title("Instructor: Dr. Jonathan Taylar")
+    st.title("Instructor: Dr. Jonathan Taylor")
     
     page = st.selectbox("Select Page", ["Login", "Prediction"])
     
@@ -67,7 +67,8 @@ def main():
         if login():
             st.subheader("Welcome to the Prediction Page")
     elif page == "Prediction":
-        run_prediction()
+        if login():  # Check if the user is logged in before allowing access to the Prediction page
+            run_prediction()
 
 if __name__ == "__main__":
     main()
