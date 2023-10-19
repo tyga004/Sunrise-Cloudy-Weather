@@ -16,7 +16,11 @@ def login():
             st.error("Incorrect username or password")
     return False
 
-def run_prediction():
+def run_prediction(logged_in):
+    if not logged_in:
+        st.warning("You need to log in to access the Prediction page.")
+        return
+
     st.title("Prediction")
     @st.cache(allow_output_mutation=True)
     def load_model():
@@ -61,13 +65,15 @@ def main():
     st.title("Section: CPE 028 - CPE41S5")
     st.title("Instructor: Dr. Jonathan Taylar")
     
+    logged_in = False
     page = st.selectbox("Select Page", ["Login", "Prediction"])
     
     if page == "Login":
-        if login():
+        logged_in = login()
+        if logged_in:
             st.subheader("Welcome to the Prediction Page")
     elif page == "Prediction":
-        run_prediction()
+        run_prediction(logged_in)
 
 if __name__ == "__main__":
     main()
