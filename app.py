@@ -16,25 +16,9 @@ def login():
             st.error("Incorrect username or password")
     return False
 
-def run_prediction(logged_in):
-    if not logged_in:
-        st.warning("You need to log in to access the Prediction page.")
-        return
-
+def run_prediction(model):
     st.title("Prediction")
-    @st.cache(allow_output_mutation=True)
-    def load_model():
-        model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
-        return model
 
-    def import_and_predict(image_data, model):
-        image = cv2.resize(image_data, (128, 128))
-        image = image / 255.0
-        image = np.expand_dims(image, axis=0)
-        prediction = model.predict(image)
-        return prediction
-
-    model = load_model()
     class_names = ["CLOUDY", "SUNRISE"]
 
     file = st.file_uploader(
@@ -56,6 +40,13 @@ def run_prediction(logged_in):
         string = "Prediction: " + class_name
         st.success(string)
 
+def import_and_predict(image_data, model):
+    image = cv2.resize(image_data, (128, 128))
+    image = image / 255.0
+    image = np.expand_dims(image, axis=0)
+    prediction = model.predict(image)
+    return prediction
+
 def check_login(username, password):
     # Replace with your authentication logic
     if username == "user" and password == "user":
@@ -68,15 +59,16 @@ def main():
     st.title("Instructor: Dr. Jonathan Taylar")
 
     logged_in = False
+    model = tf.keras.models.load_model("weights-improvement-10-0.99.hdf5")
+
     page = st.selectbox("Select Page", ["Login", "Prediction"])
 
     if page == "Login":
         logged_in = login()
         if logged_in:
             st.subheader("Welcome to the Prediction Page")
-            run_prediction(logged_in)
     elif page == "Prediction" and logged_in:
-        run_prediction()
+        run_prediction(model)
 
 if __name__ == "__main__":
     main()
